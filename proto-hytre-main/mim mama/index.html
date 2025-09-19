@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Menores - Barbearia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #8B0000;
+            --secondary-color: #000000;
+            --accent-color: #FF0000;
+            --light-color: #F5F5F5;
+            --dark-color: #1A1A1A;
+            --success-color: #228B22;
+            --warning-color: #FF8C00;
+            --danger-color: #B22222;
+            --info-color: #1E90FF;
+            --gray-color: #696969;
+            --light-gray: #D3D3D3;
+            --white: #FFFFFF;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            --border-radius: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .form-section, .data-section {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--primary-color);
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        h1 {
+            color: var(--accent-color);
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h3 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--light-gray);
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="tel"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--gray-color);
+            background-color: var(--dark-color);
+            color: var(--white);
+            transition: all 0.3s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(139, 0, 0, 0.3);
+        }
+
+        .required::after {
+            content: " *";
+            color: var(--danger-color);
+        }
+
+        .row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .col {
+            flex: 1;
+        }
+
+        .responsavel-info {
+            background-color: rgba(139, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid var(--primary-color);
+        }
+
+        .terms {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(26, 26, 26, 0.5);
+            border-radius: 8px;
+            font-size: 14px;
+            border: 1px solid var(--gray-color);
+        }
+
+        .btn-submit {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(139, 0, 0, 0.3);
+        }
+
+        .db-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .db-btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .btn-connect {
+            background: var(--success-color);
+            color: white;
+        }
+
+        .btn-clear {
+            background: var(--danger-color);
+            color: white;
+        }
+
+        .db-status {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .connected {
+            background: rgba(34, 139, 34, 0.2);
+            color: var(--success-color);
+            border: 1px solid var(--success-color);
+        }
+
+        .disconnected {
+            background: rgba(178, 34, 34, 0.2);
+            color: var(--danger-color);
+            border: 1px solid var(--danger-color);
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin-top: 20px;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: rgba(26, 26, 26, 0.8);
+            box-shadow: var(--shadow);
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 12px;
+            text-align: left;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            position: sticky;
+            top: 0;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid var(--gray-color);
+            color: var(--light-gray);
+        }
+
+        tr:hover {
+            background-color: rgba(139, 0, 0, 0.1);
+        }
+
+        .action-btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-right: 5px;
+        }
+
+        .btn-edit {
+            background-color: var(--warning-color);
+            color: #212529;
+        }
+
+        .btn-delete {
+            background-color: var(--danger-color);
+            color: white;
+        }
+
+        .empty-data {
+            text-align: center;
+            padding: 30px;
+            color: var(--gray-color);
+            background-color: rgba(26, 26, 26, 0.5);
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .age-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .age-low {
+            background-color: rgba(34, 139, 34, 0.2);
+            color: var(--success-color);
+        }
+
+        .age-medium {
+            background-color: rgba(255, 140, 0, 0.2);
+            color: var(--warning-color);
+        }
+
+        .age-high {
+            background-color: rgba(178, 34, 34, 0.2);
+            color: var(--danger-color);
+        }
+
+        /* Estilos para scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark-color);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-color);
+        }
+
+        @media (min-width: 992px) {
+            .form-section {
+                min-height: 40vh;
+            }
+            
+            .data-section {
+                min-height: 50vh;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .db-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="header">
+            <div class="logo"><i class="fas fa-cut"></i> Barbearia Estilo Clássico</div>
+            <h1>Cadastro de Menores de Idade</h1>
+        </div>
+        
+        <div class="form-section">
+            <form id="registrationForm">
+                <h2><i class="fas fa-child"></i> Informações do Menor de Idade</h2>
+                
+                <div class="form-group">
+                    <label for="minorName" class="required">Nome Completo do Menor</label>
+                    <input type="text" id="minorName" name="minorName" required>
+                </div>
+                
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="minorBirthdate" class="required">Data de Nascimento</label>
+                            <input type="date" id="minorBirthdate" name="minorBirthdate" required>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="minorGender" class="required">Sexo</label>
+                            <select id="minorGender" name="minorGender" required>
+                                <option value="">Selecione</option>
+                                <option value="masculino">Masculino</option>
+                                <option value="feminino">Feminino</option>
+                                <option value="outro">Outro</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <h2><i class="fas fa-user-tie"></i> Dados do Responsável</h2>
+                
+                <div class="responsavel-info">
+                    <div class="form-group">
+                        <label for="responsibleName" class="required">Nome do Responsável</label>
+                        <input type="text" id="responsibleName" name="responsibleName" required>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="responsibleCPF" class="required">CPF do Responsável</label>
+                                <input type="text" id="responsibleCPF" name="responsibleCPF" required>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="responsiblePhone" class="required">Telefone do Responsável</label>
+                                <input type="tel" id="responsiblePhone" name="responsiblePhone" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="responsibleRelation" class="required">Parentesco com o Menor</label>
+                        <select id="responsibleRelation" name="responsibleRelation" required>
+                            <option value="">Selecione</option>
+                            <option value="pai">Pai</option>
+                            <option value="mae">Mãe</option>
+                            <option value="avo">Avô/Avó</option>
+                            <option value="tio">Tio/Tia</option>
+                            <option value="irmao">Irmão/Irmã</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <h2><i class="fas fa-heart"></i> Saúde e Preferências</h2>
+                
+                <div class="form-group">
+                    <label for="minorAllergies">Alergias ou Condições Especiais</label>
+                    <input type="text" id="minorAllergies" name="minorAllergies" placeholder="Ex: alergia a produtos com fragrância, asma...">
+                </div>
+                
+                <div class="form-group">
+                    <label for="sensoryInfo">Informações Sensoriais</label>
+                    <textarea id="sensoryInfo" name="sensoryInfo" rows="2" placeholder="Ex: sensível ao toque na nuca, não gosta de barulho da máquina..."></textarea>
+                </div>
+                
+                <div class="terms">
+                    <p><strong>Termo de Responsabilidade:</strong> Declaro que sou responsável pelo menor e autorizo o procedimento de corte de cabelo, estando ciente dos produtos que serão utilizados e das condições do serviço.</p>
+                    <div class="form-group" style="margin-top: 10px;">
+                        <label>
+                            <input type="checkbox" id="agreeTerms" name="agreeTerms" required> 
+                            Concordo com os termos e condições
+                        </label>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn-submit"><i class="fas fa-database"></i> Salvar no Banco de Dados</button>
+            </form>
+            
+            <div class="db-actions">
+                <button class="db-btn btn-connect" id="connectDB"><i class="fas fa-plug"></i> Conectar ao BD</button>
+                <button class="db-btn btn-clear" id="clearDB"><i class="fas fa-trash"></i> Limpar Dados</button>
+            </div>
+            
+            <div class="db-status disconnected" id="dbStatus">
+                Banco de dados desconectado
+            </div>
+        </div>
+        
+        <div class="data-section">
+            <h2><i class="fas fa-table"></i> Visualização em Tabela</h2>
+            <p>Dados armazenados no banco de dados</p>
+            
+            <div class="table-container">
+                <table id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Idade</th>
+                            <th>Responsável</th>
+                            <th>Parentesco</th>
+                            <th>Telefone</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="6">
+                                <div class="empty-data">
+                                    <i class="fas fa-database" style="font-size: 50px; margin-bottom: 15px;"></i>
+                                    <p>Nenhum dado cadastrado ainda.</p>
+                                    <p>Conecte ao banco de dados e preencha o formulário.</p>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const connectBtn = document.getElementById('connectDB');
+            const clearBtn = document.getElementById('clearDB');
+            const dbStatus = document.getElementById('dbStatus');
+            const dataTable = document.getElementById('dataTable');
+            
+            let dbConnected = false;
+            let database = [];
+            
+            // Conectar ao banco de dados (simulado)
+            connectBtn.addEventListener('click', function() {
+                dbConnected = !dbConnected;
+                
+                if (dbConnected) {
+                    dbStatus.textContent = "Conectado ao banco de dados";
+                    dbStatus.className = "db-status connected";
+                    connectBtn.innerHTML = '<i class="fas fa-plug"></i> Desconectar do BD';
+                    connectBtn.classList.add('btn-clear');
+                    connectBtn.classList.remove('btn-connect');
+                    
+                    // Carregar dados do localStorage se existirem
+                    const savedData = localStorage.getItem('barberShopMinors');
+                    if (savedData) {
+                        database = JSON.parse(savedData);
+                        updateDataTable();
+                    }
+                } else {
+                    dbStatus.textContent = "Banco de dados desconectado";
+                    dbStatus.className = "db-status disconnected";
+                    connectBtn.innerHTML = '<i class="fas fa-plug"></i> Conectar ao BD';
+                    connectBtn.classList.add('btn-connect');
+                    connectBtn.classList.remove('btn-clear');
+                    
+                    dataTable.querySelector('tbody').innerHTML = `
+                        <tr>
+                            <td colspan="6">
+                                <div class="empty-data">
+                                    <i class="fas fa-database" style="font-size: 50px; margin-bottom: 15px;"></i>
+                                    <p>Nenhum dado cadastrado ainda.</p>
+                                    <p>Conecte ao banco de dados e preencha o formulário.</p>
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                }
+            });
+            
+            // Limpar banco de dados
+            clearBtn.addEventListener('click', function() {
+                if (dbConnected) {
+                    if (confirm("Tem certeza que deseja limpar todos os dados do banco?")) {
+                        database = [];
+                        localStorage.removeItem('barberShopMinors');
+                        updateDataTable();
+                    }
+                } else {
+                    alert("Conecte ao banco de dados primeiro.");
+                }
+            });
+            
+            // Validar formulário e salvar no banco
+            document.getElementById('registrationForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (!dbConnected) {
+                    alert("Conecte ao banco de dados primeiro.");
+                    return;
+                }
+                
+                const minorName = document.getElementById('minorName').value;
+                const minorBirthdate = document.getElementById('minorBirthdate').value;
+                const minorGender = document.getElementById('minorGender').value;
+                const responsibleName = document.getElementById('responsibleName').value;
+                const responsibleCPF = document.getElementById('responsibleCPF').value;
+                const responsiblePhone = document.getElementById('responsiblePhone').value;
+                const responsibleRelation = document.getElementById('responsibleRelation').value;
+                const agreeTerms = document.getElementById('agreeTerms').checked;
+                
+                if (!minorName || !minorBirthdate || !minorGender || !responsibleName || !responsibleCPF || !responsiblePhone || !responsibleRelation) {
+                    alert('Por favor, preencha todos os campos obrigatórios do menor de idade e do responsável.');
+                    return;
+                }
+                
+                if (!agreeTerms) {
+                    alert('Você precisa concordar com os termos de responsabilidade para cadastrar um menor.');
+                    return;
+                }
+                
+                // Verificar se é realmente menor de idade
+                const birthDate = new Date(minorBirthdate);
+                const today = new Date();
+                let age = today.getFullYear() - birthDate.getFullYear();
+                const monthDiff = today.getMonth() - birthDate.getMonth();
+                
+                if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+                
+                if (age >= 18) {
+                    alert('A pessoa cadastrada deve ser menor de 18 anos.');
+                    return;
+                }
+                
+                // Coletar dados do formulário
+                const formData = {
+                    id: Date.now(), // ID único baseado no timestamp
+                    minor: {
+                        name: minorName,
+                        birthdate: minorBirthdate,
+                        gender: minorGender,
+                        allergies: document.getElementById('minorAllergies').value,
+                        sensoryInfo: document.getElementById('sensoryInfo').value
+                    },
+                    responsible: {
+                        name: responsibleName,
+                        cpf: responsibleCPF,
+                        phone: responsiblePhone,
+                        relation: responsibleRelation
+                    },
+                    agreedToTerms: agreeTerms,
+                    registrationDate: new Date().toLocaleString('pt-BR')
+                };
+                
+                // Adicionar ao banco de dados
+                database.push(formData);
+                
+                // Salvar no localStorage (simulando banco de dados)
+                localStorage.setItem('barberShopMinors', JSON.stringify(database));
+                
+                // Atualizar a tabela
+                updateDataTable();
+                
+                // Limpar formulário
+                this.reset();
+                
+                alert('Cadastro realizado com sucesso e salvo no banco de dados!');
+            });
+            
+            // Atualizar tabela de dados
+            function updateDataTable() {
+                const tbody = dataTable.querySelector('tbody');
+                
+                if (database.length === 0) {
+                    tbody.innerHTML = `
+                        <tr>
+                            <td colspan="6">
+                                <div class="empty-data">
+                                    <i class="fas fa-database" style="font-size: 50px; margin-bottom: 15px;"></i>
+                                    <p>Nenhum dado cadastrado ainda.</p>
+                                    <p>Preencha o formulário para adicionar registros.</p>
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                    return;
+                }
+                
+                tbody.innerHTML = '';
+                
+                database.forEach(item => {
+                    // Calcular idade
+                    const birthDate = new Date(item.minor.birthdate);
+                    const today = new Date();
+                    let age = today.getFullYear() - birthDate.getFullYear();
+                    const monthDiff = today.getMonth() - birthDate.getMonth();
+                    
+                    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                        age--;
+                    }
+                    
+                    // Definir classe de idade
+                    let ageClass = 'age-high';
+                    if (age < 10) ageClass = 'age-low';
+                    else if (age < 15) ageClass = 'age-medium';
+                    
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${item.minor.name}</td>
+                        <td><span class="age-badge ${ageClass}">${age} anos</span></td>
+                        <td>${item.responsible.name}</td>
+                        <td>${item.responsible.relation}</td>
+                        <td>${item.responsible.phone}</td>
+                        <td>
+                            <button class="action-btn btn-edit" data-id="${item.id}"><i class="fas fa-edit"></i></button>
+                            <button class="action-btn btn-delete" data-id="${item.id}"><i class="fas fa-trash"></i></button>
+                        </td>
+                    `;
+                    
+                    tbody.appendChild(row);
+                });
+                
+                // Adicionar eventos aos botões
+                document.querySelectorAll('.btn-delete').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const id = parseInt(this.getAttribute('data-id'));
+                        deleteRecord(id);
+                    });
+                });
+                
+                document.querySelectorAll('.btn-edit').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const id = parseInt(this.getAttribute('data-id'));
+                        editRecord(id);
+                    });
+                });
+            }
+            
+            // Excluir registro
+            function deleteRecord(id) {
+                if (confirm("Tem certeza que deseja excluir este registro?")) {
+                    database = database.filter(item => item.id !== id);
+                    localStorage.setItem('barberShopMinors', JSON.stringify(database));
+                    updateDataTable();
+                }
+            }
+            
+            // Editar registro (simulação)
+            function editRecord(id) {
+                const record = database.find(item => item.id === id);
+                if (record) {
+                    alert(`Editar registro: ${record.minor.name}\n\nEm um sistema real, isso abriria um formulário de edição.`);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

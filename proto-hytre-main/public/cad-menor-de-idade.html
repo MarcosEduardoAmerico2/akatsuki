@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRAGAS Barbearia - Controle</title>
+    <link rel="stylesheet" href="cad_menor-de-idade.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-cut"></i> GRAGAS Barbearia</h1>
+            <nav>
+                        <ul>
+                            <!--dashboard-->
+                           <div class="container-botoes">
+                           <a href="index.html" class="botao-navegacao">
+                             <i class="fas fa-tachometer-alt"></i> Dashboard
+                            </a>
+                           <!--Agendamentos-->
+                           <a href="cadastro-agendamento.html" class="botao-link">
+                            <i class="fas fa-calendar"></i>Agendamentos
+                           </a>
+                           <!--clientes-->
+                            <a href="cadastro-cliente.html" class="botao-link">
+                             <i class="fas fa-users"></i>Clientes
+                            </a>
+                            <!--Serviços-->
+                            <a href="cadastro-cerviço.html" class="botao-navegacao">
+                             <i class="fas fa-concierge-bell"></i> Serviços
+                            </a>
+                            <!--Barbeiros-->
+                             <a href="cadastro-barbeiro.html" class="botao-navegacao">
+                              <i class="fas fa-user-tie"></i> Barbeiros
+                             </a>
+                            <!--financeiro-->
+                            <a href="financeiro.html" class="botao-navegacao">
+                             <i class="fas fa-money-bill-wave"></i> Financeiro
+                            </a>
+                            <!--Historico-->
+                            <a href="historico.html" class="botao-navegacao">
+                             <i class="fas fa-history"></i> Histórico
+                            </a>
+                        </ul>
+                    </nav>
+        </header>
+<body>
+    <div class="main-container">
+        <div class="header">
+            <h1>Cadastro de Menores de Idade</h1>
+        </div>
+        
+        <div class="form-section">
+            <form id="registrationForm">
+                <h2><i class="fas fa-child"></i> Informações do Menor de Idade</h2>
+                
+                <div class="form-group">
+                    <label for="minorName" class="required">Nome Completo do Menor</label>
+                    <input type="text" id="minorName" name="minorName" required>
+                </div>
+                
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="minorBirthdate" class="required">Data de Nascimento</label>
+                            <input type="date" id="minorBirthdate" name="minorBirthdate" required>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="minorGender" class="required">Sexo</label>
+                            <select id="minorGender" name="minorGender" required>
+                                <option value="">Selecione</option>
+                                <option value="masculino">Masculino</option>
+                                <option value="feminino">Feminino</option>
+                                <option value="outro">Outro</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <h2><i class="fas fa-user-tie"></i> Dados do Responsável</h2>
+                
+                <div class="responsavel-info">
+                    <div class="form-group">
+                        <label for="responsibleName" class="required">Nome do Responsável</label>
+                        <input type="text" id="responsibleName" name="responsibleName" required>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="responsibleCPF" class="required">CPF do Responsável</label>
+                                <input type="text" id="responsibleCPF" name="responsibleCPF" required>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="responsiblePhone" class="required">Telefone do Responsável</label>
+                                <input type="tel" id="responsiblePhone" name="responsiblePhone" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="responsibleRelation" class="required">Parentesco com o Menor</label>
+                        <select id="responsibleRelation" name="responsibleRelation" required>
+                            <option value="">Selecione</option>
+                            <option value="pai">Pai</option>
+                            <option value="mae">Mãe</option>
+                            <option value="avo">Avô/Avó</option>
+                            <option value="tio">Tio/Tia</option>
+                            <option value="irmao">Irmão/Irmã</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <h2><i class="fas fa-heart"></i> Saúde e Preferências</h2>
+                
+                <div class="form-group">
+                    <label for="minorAllergies">Alergias ou Condições Especiais</label>
+                    <input type="text" id="minorAllergies" name="minorAllergies" placeholder="Ex: alergia a produtos com fragrância, asma...">
+                </div>
+                
+                <div class="form-group">
+                    <label for="sensoryInfo">Informações Sensoriais</label>
+                    <textarea id="sensoryInfo" name="sensoryInfo" rows="2" placeholder="Ex: sensível ao toque na nuca, não gosta de barulho da máquina..."></textarea>
+                </div>
+                
+                <div class="terms">
+                    <p><strong>Termo de Responsabilidade:</strong> Declaro que sou responsável pelo menor e autorizo o procedimento de corte de cabelo, estando ciente dos produtos que serão utilizados e das condições do serviço.</p>
+                    <div class="form-group" style="margin-top: 10px;">
+                        <label>
+                            <input type="checkbox" id="agreeTerms" name="agreeTerms" required> 
+                            Concordo com os termos e condições
+                        </label>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn-submit"><i class="fas fa-database"></i> Salvar no Banco de Dados</button>
+            </form>
+            
+            <div class="db-actions">
+                <button class="db-btn btn-connect" id="connectDB"><i class="fas fa-plug"></i> Conectar ao BD</button>
+                <button class="db-btn btn-clear" id="clearDB"><i class="fas fa-trash"></i> Limpar Dados</button>
+            </div>
+            
+            <div class="db-status disconnected" id="dbStatus">
+                Banco de dados desconectado
+            </div>
+        </div>
+        
+        <div class="data-section">
+            <h2><i class="fas fa-table"></i> Visualização em Tabela</h2>
+            <p>Dados armazenados no banco de dados</p>
+            
+            <div class="table-container">
+                <table id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Idade</th>
+                            <th>Responsável</th>
+                            <th>Parentesco</th>
+                            <th>Telefone</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="6">
+                                <div class="empty-data">
+                                    <i class="fas fa-database" style="font-size: 50px; margin-bottom: 15px;"></i>
+                                    <p>Nenhum dado cadastrado ainda.</p>
+                                    <p>Conecte ao banco de dados e preencha o formulário.</p>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+     <script src="cad-menor-de-idade.js"></script>
+</body>
+</html>
